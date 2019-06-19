@@ -13,24 +13,24 @@ console.log() logs the array of quotes to the console.
 
 
 let quotes = [
-  {quote: 'In ancient times having power meant having access to data. Today having power means knowing what to ignore.', source: 'Yuval Noah Harari', citation: 'Homo Deus' },
-  {quote: 'However beautiful a song may be, it is just a tune to those who do not understand its meaning.', source: 'Milarepa'},
-  {quote: 'Everything can be taken from a man but one thing: the last of the human freedoms—to choose one’s attitude in any given set of circumstances, to choose one’s own way.', source: 'Viktor Frankl'},
-  {quote: 'After silence, that which comes nearest to expressing the inexpressible is music.', source: 'Aldous Huxley',  citation: 'Music at Night and Other Essays' },
-  {quote: 'Anyone who has the power to make you believe absurdities has the power to make you commit injustices.', source: 'Voltaire'},
-  {quote: 'There is no right and wrong, but right is right and wrong is wrong.', source: 'Suzuki Roshi'},
-  {quote: "He who binds to himself a Joy,<br /> Does the winged life destroy;<br /> He who kisses the Joy as it flies,<br /> Lives in Eternity's sunrise.", source: 'William Blake', citation: 'Eternity'},
-  {quote: 'To learn how to die is to learn how to live.', source: 'Sogyal Rinpoche', citation: 'The Tibetan Book of Living and Dying'},
-  {quote: 'In the thick of the forest is where you will find your freedom.', source: 'Buddha'},
-  {quote: 'The real voyage of discovery consists not in seeing new landscapes but in having new eyes.', source: 'Marcel Proust'},
-  {quote: 'As the wheel follows the ox who draws the cart, speak or act with a clear mind and happiness will follow you.', source: 'Buddha'},
-  {quote: "Fear is the cheapest room in the house. I'd rather see you in better living conditions.", source: 'Hafiz'},
-  {quote: 'Construction and destruction alike satisfy the will to power, but construction is more difficult as a rule, and therefore gives more satisfaction to the person who can achieve it.', source: 'Bertrand Russell'},
-  {quote: 'If you think something is ugly, look harder. Ugliness is just a failure of seeing.', source: 'Matt Haig', citation: 'The Humans'},
-  {quote: 'Happy the man, and happy he alone,<br /> He who can call today his own:<br /> He who, secure within, can say:<br /> "Tomorrow, do thy worst, for I have lived today."', source: 'Horace', year: '30 B.C.'},
-  {quote: 'Questions you cannot answer are usually far better for you than questions you cannot question.', source: 'Yuval Noah Harai', citation: '21 Lessons For The 21st Century'},
-  {quote: "As a bee takes the essence of a flower and pollen without destroying it's beauty or perfume, so the wise wander freely in this life, carrying only blessings.", source: 'Buddha'},
-  {quote: "Anger - with it's poisoned source and it's honeyed tip.", source: 'Buddha'},
+  {quote: 'In ancient times having power meant having access to data. Today having power means knowing what to ignore.', source: 'Yuval Noah Harari', citation: 'Homo Deus', tags:'Power'},
+  {quote: 'However beautiful a song may be, it is just a tune to those who do not understand its meaning.', source: 'Milarepa', tags:'Knowledge'},
+  {quote: 'Everything can be taken from a man but one thing: the last of the human freedoms—to choose one’s attitude in any given set of circumstances, to choose one’s own way.', source: 'Viktor Frankl',tags:'Freedom'},
+  {quote: 'After silence, that which comes nearest to expressing the inexpressible is music.', source: 'Aldous Huxley',  citation: 'Music at Night and Other Essays', tags:'Art'},
+  {quote: 'Anyone who has the power to make you believe absurdities has the power to make you commit injustices.', source: 'Voltaire', tags:'Power'},
+  {quote: 'There is no right and wrong, but right is right and wrong is wrong.', source: 'Suzuki Roshi', tags:'Knowledge'},
+  {quote: "He who binds to himself a Joy,<br /> Does the winged life destroy;<br /> He who kisses the Joy as it flies,<br /> Lives in Eternity's sunrise.", source: 'William Blake', citation: 'Eternity', tags:'Freedom'},
+  {quote: 'To learn how to die is to learn how to live.', source: 'Sogyal Rinpoche', citation: 'The Tibetan Book of Living and Dying', tags:'Freedom'},
+  {quote: 'In the thick of the forest is where you will find your freedom.', source: 'Buddha', tags:'Freedom'},
+  {quote: 'The real voyage of discovery consists not in seeing new landscapes but in having new eyes.', source: 'Marcel Proust', tags:'Discovery'},
+  {quote: 'As the wheel follows the ox who draws the cart, speak or act with a clear mind and happiness will follow you.', source: 'Buddha', tags:'Freedom'},
+  {quote: "Fear is the cheapest room in the house. I'd rather see you in better living conditions.", source: 'Hafiz', tags:'Fear'},
+  {quote: 'Construction and destruction alike satisfy the will to power, but construction is more difficult as a rule, and therefore gives more satisfaction to the person who can achieve it.', source: 'Bertrand Russell',tags:'Satisfaction'},
+  {quote: 'If you think something is ugly, look harder. Ugliness is just a failure of seeing.', source: 'Matt Haig', citation: 'The Humans', tags:'Discovery'},
+  {quote: 'Happy the man, and happy he alone,<br /> He who can call today his own:<br /> He who, secure within, can say:<br /> "Tomorrow, do thy worst, for I have lived today."', source: 'Horace', year: '30 B.C.', tags:'Freedom'},
+  {quote: 'Questions you cannot answer are usually far better for you than questions you cannot question.', source: 'Yuval Noah Harai', citation: '21 Lessons For The 21st Century', tags:'Discovery'},
+  {quote: "As a bee takes the essence of a flower and pollen without destroying it's beauty or perfume, so the wise wander freely in this life, carrying only blessings.", source: 'Buddha', tags:'Discovery'},
+  {quote: "Anger - with it's poisoned source and it's honeyed tip.", source: 'Buddha', tags:'Anger'},
 ];
 console.log(quotes);
 
@@ -70,6 +70,8 @@ function print(message, htmlID) {
 - Call the 'print' function and pass arguments: 
   - "HTML" to print the created HTML string 
   - "'quote-box'" to target the desired HTMl element by its assigned id
+
+- Call the randombackgroundColour change function
 */
 
 function  printQuote() {
@@ -83,10 +85,31 @@ function  printQuote() {
   if (randomQuote.hasOwnProperty('year')) {
     HTML += '<span class="year">' + randomQuote.year + '</span>' 
   };
+  if (randomQuote.hasOwnProperty('tags')) {
+    HTML += '<span class="tags">' + randomQuote.tags + '</span>' 
+  };
   HTML+= '</p>';
   print(HTML, 'quote-box');
+  randomBackgroundColour();
 };
 
+
+/* Random Hex colour value function */
+  /* random Hex generator is from https://www.paulirish.com/2009/random-hex-color-code-snippets/ */
+  function randomColour(){
+  let colour = '#'+Math.floor(Math.random()*16777215).toString(16);
+  return colour;
+}
+
+/* Random BG colour functions */
+/* Randomly change the background colour on button press */
+function randomBackgroundColour() {
+  let randColour = randomColour();
+  document.body.style.backgroundColor = randColour;
+}
+
+/* Randomly change the background after 20 seconds */
+let timer = setInterval(printQuote, 20000);
 
 /* 
 When the "Show another quote" button is clicked, the event listener 
@@ -95,3 +118,4 @@ below will be triggered, calling the `printQuote` function.
 
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", randomBackgroundColour, false);
