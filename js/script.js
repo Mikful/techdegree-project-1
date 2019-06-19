@@ -108,14 +108,25 @@ function randomBackgroundColour() {
   document.body.style.backgroundColor = randColour;
 }
 
-/* Randomly change the background after 20 seconds */
-let timer = setInterval(printQuote, 20000);
+/* Randomly change the background after 20 seconds if button not clicked in this time*/
+  // Run from the start
+let myTimer = setInterval(printQuote, 10000);
+
+  // reset when button is clicked
+function restartTimer() {
+  clearInterval(myTimer);
+  myTimer = setInterval(printQuote, 10000);
+};
+
+
+
 
 /* 
 When the "Show another quote" button is clicked, the event listener 
-below will be triggered, calling the `printQuote` function. 
+below will be triggered, calling the `printQuote` function and the randomBackgroundColour change. 
 */
 
-
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-document.getElementById('loadQuote').addEventListener("click", randomBackgroundColour, false);
+let myButton = document.getElementById('loadQuote');
+myButton.addEventListener("click", printQuote, false);
+myButton.addEventListener("click", randomBackgroundColour, false);
+myButton.addEventListener("click", restartTimer, false);
