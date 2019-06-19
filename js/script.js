@@ -108,7 +108,7 @@ function randomBackgroundColour() {
   document.body.style.backgroundColor = randColour;
 }
 
-/* Randomly change the background after 20 seconds if button not clicked in this time*/
+/* Randomly change the background after 10 seconds if button not clicked in this time*/
   // Run from the start
 let myTimer = setInterval(printQuote, 10000);
 
